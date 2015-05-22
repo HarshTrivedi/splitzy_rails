@@ -1,0 +1,2 @@
+$("#word_card").html("<%= escape_javascript(      render :partial => 'shared/word_card' , :locals => {:completed => @completed , :total => @total , :word => @word }      ) %>");
+

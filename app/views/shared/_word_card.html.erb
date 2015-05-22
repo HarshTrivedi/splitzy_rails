@@ -1,0 +1,100 @@
+  <% if completed != total %>
+     		<div class="row">
+    		  <b> <%= completed + 1%> / <%= total %> </b>      	
+     		</div>
+     		<div class="row" style="padding-top: 60px ; padding-bottom: 60px ; ">
+    		    <div id="word_<%= word.id %>">
+                <%= render :partial => "shared/word" , :locals => { :word => word } %>
+              </div>          	  		
+          </div>
+     		<div class="row">
+       			<div>
+                <%if word.suggestion %>
+                    <p><b>Suggestion:</b></p>
+                    <p><%= word.suggestion %></p>
+                <%end%>
+      		  </div>
+     		</div>
+     		<div class="row">
+
+              <button type="button" class="btn btn-danger" aria-label="Left Align" id="refresh">
+                <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"> Refresh </span>
+              </button>
+
+              <button type="button" class="btn btn-warning" aria-label="Left Align" id="skip">
+                <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"> Skip </span>
+              </button>
+
+              <button type="button" class="btn btn-success" aria-label="Left Align" id="save">
+                <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"> Save</span>
+              </button>
+
+
+     		</div>
+  <%else%>
+      <div class="row" style="padding-top: 60px ; padding-bottom: 60px ; ">           
+          <h1 style="font-size: 50px"> No Word Left !  </h1>
+      </div>
+  <%end%>
+
+
+
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    language_name = $("#language_name").text().trim();
+
+        $( "#save" ).click(function() {
+              var letters = $('#word').children();
+              var syllabified_word = "";
+              for(i=0;i<letters.length;i++){
+                syllabified_word = syllabified_word + letters[i].innerText;
+              }
+              var word_id = $('#word_id').text();         
+
+              $.ajax({
+                type: "POST",
+                url: "/syllabify/" + language_name ,
+                data: { submit_type: "save" ,
+                        language_name: language_name,
+                        word_id: word_id ,
+                        syllabified_text: syllabified_word
+                },
+                dataType: "script"
+              });
+        });
+
+        $( "#skip" ).click(function() {
+              alert( "Skip is clicked" );
+              word_id = $("#word_id").text().trim();
+                            
+              $.ajax({
+                type: "POST",
+                url: "/syllabify/" + language_name ,
+                data: { submit_type: "skip" ,
+                        word_id: word_id 
+                },
+                dataType: "script"
+              });
+
+        });
+
+
+        $( "#refresh" ).click(function() {
+              alert( "Refresh is clicked" );
+              word_id = $("#word_id").text().trim();          
+              $.ajax({
+                type: "POST",
+                url: "/syllabify/" + language_name ,
+                data: { submit_type: "refresh" ,
+                        word_id: word_id 
+                },
+                dataType: "script"
+              });
+        });
+
+
+    });
+
+</script>

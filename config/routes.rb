@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users, controllers: {registrations: "users/registrations", sessions: "users/sessions", passwords: "users/passwords"}, skip: [:sessions, :registrations]
 
-  get   'syllabify/:language'  => 'landings#syllabify'         , as: :syllabify
+  get   'syllabify/:language_name'  => 'landings#syllabify'         , as: :syllabify
+  post   'syllabify/:language_name'  => 'landings#syllabify'         , as: :syllabify_remote
 
   root 'landings#index'
 

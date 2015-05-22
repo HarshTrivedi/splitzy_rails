@@ -12,6 +12,10 @@
                       <%end%>
                   <%end%>
 
+                  <span style="visibility:hidden" id="language_name">
+                    <%= @language.value%>
+                  </span>
+
 	            </div>
           	</div>
         </div>
@@ -20,45 +24,9 @@
         <div class="col-xs-12 col-sm-9">
           <div class="jumbotron">
           	  <div class="container text-center">
-
-                  <% if @completed != @total %>
-              	  		<div class="row">
-    		          		  <b> <%= @completed + 1%> / <%= @total %> </b>      	
-              	  		</div>
-              	  		<div class="row" style="padding-top: 60px ; padding-bottom: 60px ; ">
-    		          		    <div id="word_<%= @word.id %>">
-                            <%= render :partial => "shared/word" , :locals => { :word => @word } %>
-                          </div>          	  		
-                      </div>
-              	  		<div class="row">
-              	  			<div>
-                          <%if @word.suggestion %>
-                              <p><b>Suggestion:</b></p>
-                              <p><%= @word.suggestion %></p>
-                          <%end%>
-    		          		  </div>
-              	  		</div>
-              	  		<div class="row">
-              	  			<button type="button" class="btn btn-danger" aria-label="Left Align">
-    						            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"> Refresh </span>
-    						        </button>
-
-                        <button type="button" class="btn btn-warning" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"> Skip </span>
-                        </button>
-
-
-              	  			<button type="button" class="btn btn-success" aria-label="Left Align">
-    						            <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"> Submit </span>
-    						        </button>
-
-              	  		</div>
-                  <%else%>
-                      <div class="row" style="padding-top: 60px ; padding-bottom: 60px ; ">                                           
-                          <h1 style="font-size: 50px"> No Word Left !  </h1>
-                      </div>
-                  <%end%>
-
+                <div id="word_card">
+                    <%= render :partial => "shared/word_card" , :locals => {:completed => @completed , :total => @total , :word => @word } %>
+                </div>
               </div>
           </div>
         </div>

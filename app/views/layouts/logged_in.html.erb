@@ -7,18 +7,14 @@
   <%= csrf_meta_tags %>
 <meta name="viewport" content="width=device-width, initial-scale=1"/></head>
 <body>
-<div class="page-container">
-  	
+<div class="page-container">  
 	<%= render partial: "elements/navbar" %>
 	<%= bootstrap_flash %>      
-
-    <div class="container">
-      	<div class="row row-offcanvas row-offcanvas-left">
-	        <div class="text-center">
-	        	<h1>Please Help us Split the words :) </h1>
-	        </div>
-    	</div>
-    </div>
+  <div class="container">
+      <div class="row row-offcanvas row-offcanvas-left">        
+        <%= yield%>
+      </div>
+  </div>
 </div>
 
 

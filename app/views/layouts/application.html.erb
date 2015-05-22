@@ -7,11 +7,69 @@
   <%= csrf_meta_tags %>
 <meta name="viewport" content="width=device-width, initial-scale=1"/></head>
 <body>
-<%= render partial: "elements/navbar" %>
-<%= bootstrap_flash %>
+<div class="page-container">
+  
+	<!-- top navbar -->
+	<%= render partial: "elements/navbar" %>
+	<%= bootstrap_flash %>      
 
+    <div class="container">
+      <div class="row row-offcanvas row-offcanvas-left">
+        
+        <!-- sidebar -->
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+        	<div class="text-center" style="padding-top: 0px;">
+        		<font style="font-size: 35px;">Languages</font>
+	            <div class="list-group">
+	              <!-- <li class="active"> -->
+	              	<a href="#" class="list-group-item active">Gujarati</a>
+	              	<a href="#" class="list-group-item ">Hindi</a>
+	              	<a href="#" class="list-group-item ">Bengali</a>
+	              	<a href="#" class="list-group-item ">English</a>
+	              	<a href="#" class="list-group-item ">Roman</a>
+	              <!-- </li> -->
+	              <!-- <li> -->
+	              <!-- <a href="#">Hindi</a> -->
+	              <!-- </li> -->
+	              <!-- <li><a href="#">Bengali</a></li> -->
+	              <!-- <li><a href="#">English</a></li> -->
+	              <!-- <li><a href="#">Roman</a></li> -->
+	            </div>
+          	</div>
+        </div>
+  	
+        <!-- main area -->
+        <div class="col-xs-12 col-sm-9">
+          <div class="jumbotron">
+          	  <div class="container text-center">
+          	  		<div class="row">
+		          		<b> 35 / 100</b>      	
+          	  		</div>
+          	  		<div class="row" style="padding-top: 60px ; padding-bottom: 60px ; ">
+		          		<h1 style="font-size: 100px"><%= raw "પગથિયા-પગથિયા"%>  </h1>
+          	  		</div>
+          	  		<div class="row">
+          	  			<div >
+				          		<p>Hello worllk lksdjf alsdkflaa aslf ks skdlf
+				          		<p>Hello worllk lksdjf alsdkflaa aslf ks skdlf
+		          		</div>
+          	  		</div>
+          	  		<div class="row">
+          	  			<button type="button" class="btn btn-danger" aria-label="Left Align">
+						  <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"> Cancel </span>
+						</button>
+          	  			<button type="button" class="btn btn-success" aria-label="Left Align">
+						  <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"> Submit </span>
+						</button>
+          	  		</div>
+          	  </div>
+          </div>
+        </div><!-- /.col-xs-12 main -->
+    </div><!--/.row-->
+  </div><!--/.container-->
+</div><!--/.page-container-->
+	<!-- script references -->
 
-<%= yield %>
 
 </body>
 </html>

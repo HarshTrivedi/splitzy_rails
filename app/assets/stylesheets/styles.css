@@ -1,0 +1,32 @@
+body {
+  padding-top: 51px;  
+}
+.text-center {
+  padding-top: 20px;
+}
+.col-xs-12 {
+  background-color: #fff;
+}
+#sidebar {
+  height: 100%;
+  padding-right: 0;
+  padding-top: 20px;
+}
+#sidebar .nav {
+  width: 100%;
+}
+#sidebar li {
+  border:0 #f2f2f2 solid;
+  border-bottom-width:1px;
+}
+
+.container{
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+  width: 95% !important;  
+}
+
+.jumbotron{
+  margin-top: 20px;
+  padding: 10px !important;
+}

@@ -1,0 +1,19 @@
+
+<div id="word" style="font-size: 100px" >
+	<h1 > <%= word.value %> </h1>
+</div>
+
+<span style="visibility:hidden" id="word_id">
+	<%= word.id%>
+</span>
+
+<script type="text/javascript">
+$('#word').html('<span>' + $('#word').text().split('').join('</span><span>') + '</span>').find('span').click(function() {
+    if ($(this).next().text() == '-') {
+        $(this).next().remove();
+    } else {
+        $(this).after('<span>-</span>');
+    }
+	}
+);
+</script>

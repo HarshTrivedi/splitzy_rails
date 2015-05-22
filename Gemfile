@@ -51,6 +51,7 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'simple_form'
 gem 'validates_formatting_of'
 gem 'tzinfo-data'
+gem 'awesome_print'
 
 group :development, :test do
   gem 'dotenv-rails'

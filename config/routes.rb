@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'landings/index'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -8,7 +7,6 @@ Rails.application.routes.draw do
   get   'syllabify/:language_name'  => 'landings#syllabify'         , as: :syllabify
   post   'syllabify/:language_name'  => 'landings#syllabify'         , as: :syllabify_remote
 
-  root 'landings#index'
 
   devise_scope :user do
     get    "login"   => "users/sessions#new",         as: :new_user_session
@@ -21,4 +19,5 @@ Rails.application.routes.draw do
     get    "account" => "users/registrations#edit",   as: :edit_user_registration
   end
 
+  root 'landings#index'
 end

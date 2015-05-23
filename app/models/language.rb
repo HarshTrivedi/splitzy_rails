@@ -8,6 +8,7 @@ class Language < ActiveRecord::Base
   	skipped_list = skipped_list.split(",")
   	all_words = self.words
   	words_left = all_words.select{|x| x.syllabifications.size == 0} - skipped_list.map{|x| Word.find_by_id(x)}
+  	words_left = words_left.sort_by(&:value)
   	return words_left.first , (all_words.size - words_left.size ) , all_words.size
   end
 

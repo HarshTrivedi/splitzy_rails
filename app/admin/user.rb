@@ -1,18 +1,45 @@
 ActiveAdmin.register User do
-  permit_params :email, :encrypted_password, :reset_password_token, :reset_password_sent_at, :remember_created_at, :sign_in_count, :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip, :last_sign_in_ip
+  menu label: "Users" , :priority => 2
 
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if resource.something?
-#   permitted
-# end
+  permit_params :email, :password, :password_confirmation, :role , :first_name , :last_name
 
+
+  show do
+      panel "User Details" do
+        attributes_table_for user do
+            row("Email")  { user.email  }
+            row("Words Tagged") {  user.words.count  }
+            row("Syllabiciations Made") {  link_to( user.syllabifications.count , admin_user_syllabifications_path(user) ) }
+            row("SignIn Count") { user.sign_in_count }
+        end
+      end
+  end
+
+
+
+    index do
+
+        column :email
+        column :syllabifications_made do |user|
+            link_to( user.syllabifications.count , admin_user_syllabifications_path(user) )
+        end
+        column :sign_in_count
+        actions
+    end
+ 
+    form do |f|
+        f.semantic_errors *f.object.errors.keys
+        f.inputs "User Details" do
+            if f.object.email.empty?
+              f.input :email 
+              f.input :password
+              f.input :password_confirmation
+            end
+            f.input :role, as: :radio, collection: { :content_generator => "content_generator" , :content_moderator => "content_moderator", :college_generator => "college_generator" }
+        end
+        f.actions
+    end
+
+    filter :email , :label => "Email"
 
 end

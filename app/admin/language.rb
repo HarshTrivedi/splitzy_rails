@@ -1,18 +1,19 @@
 ActiveAdmin.register Language do
-  permit_params :value
+    menu label: "Language" , :priority => 2
+	permit_params :value
 
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if resource.something?
-#   permitted
-# end
+	config.filters = false
 
+    action_item :only => [:show , :edit ] do
+       link_to( "Words" , admin_language_words_path( word )  )
+    end
+
+	index do
+	      column :value
+	      column :words do |language|
+	          link_to( "words" , admin_language_words_path( language )  )
+	      end
+	      actions
+	end
 
 end

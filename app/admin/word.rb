@@ -4,6 +4,10 @@ ActiveAdmin.register Word do
 	permit_params :value , :suggestion 
 	active_admin_import
 
+	scope :not_yet_syllabified
+	scope :syllabified
+
+
 	  controller do
 
 		  def new

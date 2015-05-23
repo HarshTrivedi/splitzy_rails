@@ -1,2 +1,6 @@
 $("#word_card").html("<%= escape_javascript(      render :partial => 'shared/word_card' , :locals => {:completed => @completed , :total => @total , :word => @word }      ) %>");
 
+
+$("#session-pin").html("<span class='glyphicon glyphicon-pushpin' aria-hidden='true'>  <%= escape_javascript( number_of_skipped_words.to_s ) %>   </span>");
+
+

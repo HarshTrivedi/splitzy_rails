@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get   'syllabify/:language_name'  => 'landings#syllabify'         , as: :syllabify
   post   'syllabify/:language_name'  => 'landings#syllabify'         , as: :syllabify_remote
 
+  post   '/clear_skipped_words'  => 'landings#clear_skipped_words'         , as: :clear_skipped_words
+
 
   devise_scope :user do
     get    "login"   => "users/sessions#new",         as: :new_user_session

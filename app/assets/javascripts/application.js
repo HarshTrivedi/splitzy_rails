@@ -14,5 +14,15 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
-
+//= require nprogress
+//= require nprogress-turbolinks
 //= require_tree .
+
+
+
+$( document).on( "ajaxStart", function() {
+  NProgress.start();
+});
+$( document).on( "ajaxStop", function() {
+   NProgress.done();
+});

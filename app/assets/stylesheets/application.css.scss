@@ -12,7 +12,8 @@
 *
 *= require_tree .
 *= stub active_admin
-
+*= require nprogress
+*= require nprogress-bootstrap
 *= require_self
 */
 @import "bootstrap_configuration";
@@ -20,6 +21,8 @@
 @import "bootstrap-sprockets";
 
 @import "bootstrap";
+
+
 
 //->Prelang (ui_framework:twitter_bootstrap)
 

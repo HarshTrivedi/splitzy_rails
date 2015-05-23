@@ -23,7 +23,12 @@
         <!-- main area -->
         <div class="col-xs-12 col-sm-9">
           <div class="jumbotron">
-          	  <div class="container text-center">
+              <button type="button" class="btn btn-default" aria-label="Left Align" id="session-pin">
+                    <span class="glyphicon glyphicon-pushpin" aria-hidden="true">
+                        <%= number_of_skipped_words %>
+                    </span>    
+              </button>      	  
+              <div class="container text-center">
                 <div id="word_card">
                     <%= render :partial => "shared/word_card" , :locals => {:completed => @completed , :total => @total , :word => @word } %>
                 </div>

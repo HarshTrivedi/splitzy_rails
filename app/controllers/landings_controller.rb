@@ -36,7 +36,7 @@ class LandingsController < ApplicationController
     elsif submit_type == "skip"
 
             word_id = params[:word_id]
-            session[:skipped_list]  = (( session[:skipped_list]  || "").split(",").uniq << word_id ).join(",")
+            session[:skipped_list]  = (( session[:skipped_list]  || "").split(",") << word_id ).uniq.join(",")
             skipped_list = session[:skipped_list]
             @word , @completed , @total = @language.choose_word(current_user , skipped_list ) 
 

@@ -61,6 +61,18 @@ class LandingsController < ApplicationController
   end
 
 
+  def mark_word
+      word_id = params[:word_id]
+      word = Word.find_by_id(word_id)
+      if word
+          word.marked = true
+          word.save
+          render :js => "alert('Successfully Marked!')"
+      else
+          render :js => "alert('Sorry, word not found!')"          
+      end
+  end
+
   protected
 
   def layout_by_resource

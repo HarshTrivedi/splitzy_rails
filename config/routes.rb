@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   post   '/clear_skipped_words'  => 'landings#clear_skipped_words'         , as: :clear_skipped_words
 
+  post   '/mark_word/:word_id'  => 'landings#mark_word'         , as: :mark_word
 
   devise_scope :user do
     get    "login"   => "users/sessions#new",         as: :new_user_session

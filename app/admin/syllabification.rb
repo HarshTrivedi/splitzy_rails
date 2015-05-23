@@ -77,5 +77,21 @@ ActiveAdmin.register Syllabification do
 	      end
 	      f.actions
 	end
+	
+	csv do
+	 	column :language do |syllabification|
+	 		syllabification.word.language.value
+	 	end
+	 	column :tagger do |syllabification|
+	 		syllabification.user.email
+	 	end
+	    column :word do |syllabification|
+	   		syllabification.word.value
+	    end
+	    column :value
+	    column :created_at
+	    column :note
+	end
+
 
 end

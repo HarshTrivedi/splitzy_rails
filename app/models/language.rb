@@ -10,7 +10,7 @@ class Language < ActiveRecord::Base
     skipped_list.each{|x| all_word_ids.delete(x) }
     words_left = Word.where( :id => word_ids_left ).order(:value).limit(1)
     all_words_size = all_word_ids.size
-    return words_left.first , ( all_words_size - words_left.size ) , all_words_size
+    return words_left.first , ( all_words_size - word_ids_left.size ) , all_words_size
   end
 
 

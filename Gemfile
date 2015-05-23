@@ -68,3 +68,5 @@ group :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
 end
+
+gem 'active_skin'

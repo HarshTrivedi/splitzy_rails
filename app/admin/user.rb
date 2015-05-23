@@ -40,6 +40,11 @@ ActiveAdmin.register User do
         f.actions
     end
 
+    action_item :only => [:show , :edit ] do
+       link_to( "syllabifications" , admin_user_syllabifications_path( user )  )
+    end
+
+
     filter :email , :label => "Email"
 
 end

@@ -2,7 +2,7 @@ ActiveAdmin.register Word do
 	menu false
 	belongs_to :language , :optional => true
 	permit_params :value , :suggestion 
-
+	active_admin_import
 
 	  controller do
 
@@ -41,14 +41,47 @@ ActiveAdmin.register Word do
 	  index do
 	        column :value
 	        column :syllabifications do |word|
-	          link_to( "syllabifications" , admin_word_syllabifications_path( word )  )
+	          link_to( "syllabifications" , admin_word_path( word )  )
 	        end
 	        actions
 	  end
 
-	  action_item :only => [:show , :edit ] do
-	     link_to( "syllabifications" , admin_word_syllabifications_path( word )  )
+	  show do
+
+	      panel "Word Details" do
+	        attributes_table_for word do
+	            row("Original Word")  { word.value  }
+	            row("Syllabifications submitted")  { word.syllabifications.count  }
+	        end
+	      end
+
+	      panel "Syllabifications " do
+	          table_for word.syllabifications do
+	              column "user" do |syllabification|
+			  			link_to( syllabification.user.email , admin_user_path(syllabification.user) )
+	              end
+	              column "course" do |bucket|
+	                course = bucket.course
+	                link_to( course.name , admin_course_path( course ) ) 
+	              end
+
+        		  column "word" do |syllabification|
+  					syllabification.word.value
+        		  end
+
+        		  column "syllabification" do |syllabification|
+  					syllabification.value 
+        		  end
+        		  
+        		  column "note" do |syllabification|
+        		  	syllabification.note
+        		  end
+	          end
+	      end
+
+
 	  end
+
 
 
 	  form do |f|

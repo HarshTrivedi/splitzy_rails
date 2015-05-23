@@ -1,7 +1,6 @@
 ActiveAdmin.register Syllabification do
 	menu false
 
-	belongs_to :word , :optional => true
 	belongs_to :user , :optional => true
 
 	permit_params :value, :note, :word_id	

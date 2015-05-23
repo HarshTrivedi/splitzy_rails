@@ -43,12 +43,12 @@ class LandingsController < ApplicationController
     elsif submit_type == "refresh"
 
             word_id = params[:word_id]
+            skipped_list = session[:skipped_list]
+            @word , @completed , @total = @language.choose_word(current_user , skipped_list )                                   
             @word = Word.find_by_id(word_id)
-            words_left = @language.words.select{|x| x.syllabifications.size == 0}
-            all_words = @language.words
-            @completed , @total = (all_words.size - words_left.size ) , all_words.size
 
     else
+            skipped_list = session[:skipped_list]
             @word , @completed , @total = @language.choose_word(current_user , skipped_list ) 
     end
       

@@ -6,16 +6,19 @@
 
                   <%for language in Language.all %>
                       <%if (current_page?("/syllabify/#{language.value}") )  %>
-                            <a href="/syllabify/<%= language.value %>" class="list-group-item active"> <%= language.value %> </a>
+                            <a href="/syllabify/<%= language.value %>" class="list-group-item active"> <%= language.value %> 
+                              <span class="badge"> <%= language.words.count %> </span>
+                            </a>
                       <%else%>
-                            <a href="/syllabify/<%= language.value %>" class="list-group-item"> <%= language.value %> </a>
+                            <a href="/syllabify/<%= language.value %>" class="list-group-item"> <%= language.value %> 
+                            <span class="badge">  <%= language.words.count %>  </span>
+                            </a>
                       <%end%>
                   <%end%>
 
                   <span style="visibility:hidden" id="language_name">
                     <%= @language.value%>
                   </span>
-
 	            </div>
           	</div>
         </div>

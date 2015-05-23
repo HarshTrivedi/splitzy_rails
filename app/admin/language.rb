@@ -5,7 +5,7 @@ ActiveAdmin.register Language do
 	config.filters = false
 
     action_item :only => [:show , :edit ] do
-       link_to( "Words" , admin_language_words_path( word )  )
+       link_to( "Words" , admin_language_words_path( language )  )
     end
 
 	index do

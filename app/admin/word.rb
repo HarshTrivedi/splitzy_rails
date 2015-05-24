@@ -97,7 +97,7 @@ ActiveAdmin.register Word do
 	      f.inputs  "Word Details" do
 	          f.input :language_id, :as => :hidden ,  input_html: { :value => f.object.language_id }
 	          f.input :value
-	          f.suggestion :value
+	          f.input :suggestion
 	      end
 	      f.actions
 	  end

@@ -1,6 +1,15 @@
   <% if completed != total %>
      		<div class="row">
-           <h3><span class="label label-default "> <b> <%= completed + 1%> / <%= total %> </b> </span> </h3> 	
+           <h3>
+              <span class="label label-default "  style="margin: 3px;"> 
+                    <b> <%= completed + 1%> / <%= total %> </b> 
+              </span> 	           
+              <button type="button" class="btn btn-default" aria-label="Left Align" id="session-pin" style="margin: 3px;">
+                    <span class="glyphicon glyphicon-saved" aria-hidden="true"> 
+                      <%= word.syllabifications_count%> 
+                    </span> 
+              </button>
+            </h3>
      		</div>
      		<div class="row" style="padding-top: 60px ; padding-bottom: 60px ; ">
     		    <div id="word_<%= word.id %>">

@@ -59,7 +59,7 @@ ActiveAdmin.register Syllabification do
 
   show do
       panel "Syllabification Details" do
-        attributes_syllabificationle_for syllabification do
+        attributes_table_for syllabification do
             row("Tagger's Email") { link_to( syllabification.user.email , admin_user_path(syllabification.user) ) }
             row("Original Word")  { syllabification.word.value  }
             row("Syllabified Word")  { syllabification.value  }

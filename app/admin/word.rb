@@ -74,22 +74,16 @@ ActiveAdmin.register Word do
 	              column "user" do |syllabification|
 			  			link_to( syllabification.user.email , admin_user_path(syllabification.user) )
 	              end
-	              column "course" do |bucket|
-	                course = bucket.course
-	                link_to( course.name , admin_course_path( course ) ) 
-	              end
-
-        		  column "word" do |syllabification|
-  					syllabification.word.value
-        		  end
 
         		  column "syllabification" do |syllabification|
-  					syllabification.value 
+  						link_to( syllabification.value , admin_syllabification_path(syllabification) )	  					 
         		  end
         		  
         		  column "note" do |syllabification|
         		  	syllabification.note
         		  end
+
+        		  column :marked
 	          end
 	      end
 

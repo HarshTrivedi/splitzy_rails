@@ -25,4 +25,7 @@ $( document).on( "ajaxStart", function() {
 });
 $( document).on( "ajaxStop", function() {
    NProgress.done();
+   $('button').prop('disabled', false);
 });
+
+

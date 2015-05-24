@@ -55,6 +55,8 @@
     language_name = $("#language_name").text().trim();
 
         $( "#save" ).click(function() {
+              $(this).prop('disabled', true);
+
               var letters = $('#word').children();
               var syllabified_word = "";
               for(i=0;i<letters.length;i++){
@@ -75,6 +77,8 @@
         });
 
         $( "#skip" ).click(function() {
+              $(this).prop('disabled', true);
+
               word_id = $("#word_id").text().trim();
                             
               $.ajax({
@@ -90,6 +94,8 @@
 
 
         $( "#refresh" ).click(function() {
+              $(this).prop('disabled', true);
+
               word_id = $("#word_id").text().trim();          
               $.ajax({
                 type: "POST",

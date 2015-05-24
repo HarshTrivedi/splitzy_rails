@@ -4,8 +4,15 @@ ActiveAdmin.register Word do
 	permit_params :value , :suggestion 
 	active_admin_import
 
-	scope :not_yet_syllabified
-	scope :syllabified
+	scope :not_syllabified 
+	scope :one_syllabified 
+	scope :two_syllabified 
+	scope :three_syllabified 
+	scope :three_plus_syllabified 
+	scope :syllabified   
+	scope :marked 
+
+
 
 
 	  controller do
@@ -44,8 +51,11 @@ ActiveAdmin.register Word do
 
 	  index do
 	        column :value
-	        column :syllabifications do |word|
+	        column :syllabifications_link do |word|
 	          link_to( "syllabifications" , admin_word_path( word )  )
+	        end
+	        column :syllabifications do |word|
+	        	raw word.syllabifications.map(&:value).join("<br>")	          	
 	        end
 	        actions
 	  end
@@ -99,5 +109,5 @@ ActiveAdmin.register Word do
 	  end
 
 	  filter :value , :label => "Word"
-
+	  filter :marked, :label => "Marked?"
 end

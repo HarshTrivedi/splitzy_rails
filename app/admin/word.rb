@@ -95,7 +95,7 @@ ActiveAdmin.register Word do
 	  form do |f|
 	      f.semantic_errors *f.object.errors.keys
 	      f.inputs  "Word Details" do
-	          f.input :language_id, :as => :hidden ,  input_html: { :value => f.object.year_id }
+	          f.input :language_id, :as => :hidden ,  input_html: { :value => f.object.language_id }
 	          f.input :value
 	          f.suggestion :value
 	      end

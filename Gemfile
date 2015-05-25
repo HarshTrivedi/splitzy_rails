@@ -73,3 +73,4 @@ gem 'active_skin'
 gem "active_admin_import" , '2.1.2'
 gem 'rails_12factor', group: :production
 gem 'nprogress-rails'
+gem 'puma'

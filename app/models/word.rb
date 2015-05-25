@@ -11,6 +11,6 @@ class Word < ActiveRecord::Base
   scope :syllabified ,         ->{  Word.where.not(:syllabifications_count =>  0) }  
   scope :marked ,         ->{  Word.where(:marked =>  true) }
 
-
+  validates :language, :presence => true
 
 end

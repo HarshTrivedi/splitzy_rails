@@ -27,7 +27,8 @@ ActiveAdmin.register Syllabification do
 
 	    def update
 	      @syllabification = Syllabification.find(params[:id])
-	      @syllabification.update_attributes(permitted_params[:syllabification])
+	      @syllabification.value = params[:syllabification][:value]
+	      @syllabification.note = params[:syllabification][:note]
 	      update!
 	    end
 

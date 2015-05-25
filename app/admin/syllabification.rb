@@ -27,8 +27,7 @@ ActiveAdmin.register Syllabification do
 
 	    def update
 	      @syllabification = Syllabification.find(params[:id])
-	      @syllabification.value = params[:syllabification][:value]
-	      @syllabification.note = params[:syllabification][:note]
+		  @syllabification.update_attributes(permitted_params[:syllabification])
 	      update!
 	    end
 
@@ -72,7 +71,10 @@ ActiveAdmin.register Syllabification do
 	form do |f|
 	      f.semantic_errors *f.object.errors.keys
 	      f.inputs  "Syllabification Details" do
-	          f.input :word_id, :as => :hidden ,  input_html: { :value => f.object.word_id }
+	      	  if not f.object.id
+		          # add word_id only if it is NEW record
+		          f.input :word_id, :as => :hidden ,  input_html: { :value => f.object.word_id }
+		      end
 	          f.input :value
 	          f.input :note
 	      end

@@ -1,52 +1,86 @@
-  <% if completed != total %>
-     		<div class="row">
-           <h3>
-              <span class="label label-default "  style="margin: 3px;"> 
-                    <b> <%= completed + 1%> / <%= total %> </b> 
-              </span> 	           
-              <button type="button" class="btn btn-default" aria-label="Left Align" id="session-pin" style="margin: 3px;">
-                    <span class="glyphicon glyphicon-saved" aria-hidden="true"> 
-                      <%= word.syllabifications_count%> 
-                    </span> 
-              </button>
-            </h3>
-     		</div>
-     		<div class="row" style="padding-top: 60px ; padding-bottom: 60px ; ">
-    		    <div id="word_<%= word.id %>">
-                <%= render :partial => "shared/word" , :locals => { :word => word } %>
-              </div>          	  		
-          </div>
-     		<div class="row">
-       			<div>
-                <%if word.suggestion %>
-                    <p><b>Suggestion:</b></p>
-                    <p><%= word.suggestion %></p>
-                <%end%>
-      		  </div>
-     		</div>
-     		<div class="row">
+  <%if not @word.nil? %>
+      
+      <div class="col-xs-4 col-sm-4">
+          <button type="button" class="btn btn-default" aria-label="Left Align" id="session-pin" , style="float: left; margin: 2px;" >
+              <span class="glyphicon glyphicon-pushpin" aria-hidden="true">
+                <%= number_of_skipped_words %> 
+              </span>    
+          </button>
 
-              <button type="button" class="btn btn-danger" aria-label="Left Align" id="refresh">
-                <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"> Refresh </span>
-              </button>
-
-              <button type="button" class="btn btn-warning" aria-label="Left Align" id="skip">
-                <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"> Skip </span>
-              </button>
-
-              <button type="button" class="btn btn-success" aria-label="Left Align" id="save">
-                <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"> Save</span>
-              </button>
-
-
-     		</div>
-  <%else%>
-      <div class="row" style="padding-top: 60px ; padding-bottom: 60px ; ">           
-          <h1 style="font-size: 50px"> No Word Left !  </h1>
+          <%= link_to( 
+              content_tag(:span , "" , :class => "glyphicon glyphicon-refresh" ) ,
+              clear_skipped_words_path , 
+              :class => "btn btn-info" , 
+              :style => "float: left; margin: 2px;" , 
+              :method => :post , 
+              :remote => true) %>
       </div>
+
+      <div class="col-xs-4 col-sm-4 text-center">
+             <h3 style="margin-top: -15px; ">
+                <span class="label label-default " > 
+                      <b> <%= completed + 1%> / <%= total %> </b> 
+                </span>
+
+             </h3>
+      </div>
+
+      <div class="col-xs-4 col-sm-4">
+          <button type="button" class="btn btn-default" aria-label="Left Align" id="session-pin" , style="float: right; margin: 2px;">
+             <span class="glyphicon glyphicon-saved" aria-hidden="true"> 
+                <%= word.syllabifications_count%> 
+             </span> 
+          </button>
+      <%= link_to( 
+          content_tag(:span , "" , :class => "glyphicon glyphicon-exclamation-sign" ) ,
+          mark_word_path(@word.id) , 
+          :class => "btn btn-danger" , 
+          :style => "float: right; margin: 2px;" , 
+          :method => :post , 
+          :remote => true) %>
+      </div>
+
   <%end%>
 
+  <div class="container text-center">
 
+    <% if completed != total %>
+       		<div class="row">
+       		</div>
+       		<div class="row" style="padding-top: 60px ; padding-bottom: 60px ; ">
+      		    <div id="word_<%= word.id %>">
+                  <%= render :partial => "shared/word" , :locals => { :word => word } %>
+                </div>          	  		
+            </div>
+       		<div class="row">
+         			<div>
+                  <%if word.suggestion %>
+                      <p><b>Suggestion:</b></p>
+                      <p><%= word.suggestion %></p>
+                  <%end%>
+        		  </div>
+       		</div>
+       		<div class="row">
+
+                <button type="button" class="btn btn-danger" aria-label="Left Align" id="refresh">
+                  <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"> Refresh </span>
+                </button>
+
+                <button type="button" class="btn btn-warning" aria-label="Left Align" id="skip">
+                  <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"> Skip </span>
+                </button>
+
+                <button type="button" class="btn btn-success" aria-label="Left Align" id="save">
+                  <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"> Save</span>
+                </button>
+       		</div>
+    <%else%>
+        <div class="row" style="padding-top: 60px ; padding-bottom: 60px ; ">           
+            <h1 style="font-size: 50px"> No Word Left !  </h1>
+        </div>
+    <%end%>
+
+  </div>
 
 
 

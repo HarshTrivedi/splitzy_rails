@@ -30,6 +30,9 @@ class LandingsController < ApplicationController
             @word = Word.find_by_id(word_id)
             @syllabification = Syllabification.new( :user_id => user_id , :value => syllabified_text , :word_id => word_id)
             @syllabification.save
+            
+            view_context.set_recently_submitted_word(@syllabification)
+
             skipped_list = session[:skipped_list]
             @word , @completed , @total = @language.choose_word(current_user , skipped_list ) 
 

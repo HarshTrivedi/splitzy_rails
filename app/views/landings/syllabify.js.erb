@@ -1,2 +1,4 @@
 $("#word_card").html("<%= escape_javascript(      render :partial => 'shared/word_card' , :locals => {:completed => @completed , :total => @total , :word => @word }      ) %>");
 
+
+$("#recently_tagged").html("<%= escape_javascript(      render :partial => 'shared/recent_tags' , :locals => { :recent_tags => get_recently_submitted_words }      ) %>");

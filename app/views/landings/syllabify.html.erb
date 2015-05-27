@@ -21,13 +21,33 @@
                   </span>
 	            </div>
           	</div>
+
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <div class="panel-title"> Recent Tags Made</div>
+              </div>
+              <div class="panel-body text-center" style="max-height: 25vh; min-height: 25vh; ; overflow-y: scroll;">
+                <div id="recently_tagged">
+                  <%= render :partial => "shared/recent_tags"  , :locals => { :recent_tags => get_recently_submitted_words } %>
+                </div>
+              </div>
+            </div>
+
         </div>
   	
         <!-- main area -->
         <div class="col-xs-12 col-sm-9">
-          <div class="jumbotron">
+          <div class="jumbotron" style="margin-bottom: 0px;">
               <div id="word_card">
                       <%= render :partial => "shared/word_card" , :locals => {:completed => @completed , :total => @total , :word => @word } %>
               </div>
           </div>
+          <% value = (@completed.to_f / @total.to_f) * 100 %>
+          <div class="progress">
+            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="<%=value%>" aria-valuemin="0" aria-valuemax="100" style="width: <%=value%>%">
+              <span class="sr-only"><%=value%> Complete</span>
+            </div>
+          </div>
+           <!-- $('.progress-bar').css('width', valeur+'%').attr('aria-valuenow', valeur); -->
+
         </div>

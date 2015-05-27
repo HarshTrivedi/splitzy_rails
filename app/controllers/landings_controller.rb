@@ -58,7 +58,7 @@ class LandingsController < ApplicationController
 
   def clear_skipped_words
         session[:skipped_list] = ""
-        render :js => "$('#session-pin').html(\"<span class='glyphicon glyphicon-pushpin' aria-hidden='true'> 0 </span>\");"
+        render :js => "$('#session-pin').html(\"<span class='glyphicon glyphicon-pushpin' aria-hidden='true'>0</span>\");"
   end
 
 

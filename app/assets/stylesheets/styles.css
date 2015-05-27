@@ -30,3 +30,13 @@ body {
   margin-top: 20px;
   padding: 10px !important;
 }
+
+.lr_margin_zero{
+  margin-left: 0px !important;  
+  margin-right: 0px !important;  
+}
+
+.lr_padding_zero{
+  padding-left: 0px !important;  
+  padding-right: 0px !important;  
+}

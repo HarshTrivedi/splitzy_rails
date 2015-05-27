@@ -31,8 +31,6 @@ class LandingsController < ApplicationController
             @syllabification = Syllabification.new( :user_id => user_id , :value => syllabified_text , :word_id => word_id)
             @syllabification.save
             
-            view_context.set_recently_submitted_word(@syllabification)
-
             skipped_list = session[:skipped_list]
             @word , @completed , @total = @language.choose_word(current_user , skipped_list ) 
 
@@ -93,18 +91,18 @@ class LandingsController < ApplicationController
     @language = Language.find_by_value( language_name )
     syllabification = Syllabification.find_by_id( params[:syllabification_id] )
 
-    if syllabification.nil?
+    if not syllabification.nil?
 
         if current_user == syllabification.user
               submit_type = params[:submit_type]
               if submit_type == "update"
                 syllabified_text = params[:syllabified_text]
                 syllabification.value = syllabified_text
-                flash[:notice] = "Successfully updated syllabification."
+                flash[:notice] = "Successfully updated syllabification : #{syllabification.value}"
                 syllabification.save
               elsif submit_type == "destroy"
                 syllabification.destroy
-                flash[:notice] = "Successfully destroyed syllabification."
+                flash[:notice] = "Successfully destroyed syllabification : #{syllabification.value}"
               end
               render :js => "window.location = '/'"
         else

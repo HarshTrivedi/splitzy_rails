@@ -1,0 +1,11 @@
+  <h5 style="text-align: left"> 
+  <%= recent_syllabification.word.value %>  →  <%= recent_syllabification.value %>
+  <%= link_to( 
+              content_tag(:span , "" , :class => "glyphicon glyphicon glyphicon-new-window" ) ,
+              show_syllabification_path( recent_syllabification ) , 
+              :class => "btn  btn-xs" , 
+              :style => "float: right" ) %>
+  </h5>
+  <h6 style="text-align: left"><small> <%= time_ago_in_words(recent_syllabification.created_at) %> ago </small></h6>
+  <hr>
+

@@ -6,14 +6,9 @@ module ApplicationHelper
 		return (( session[:skipped_list]  || "").split(",").uniq).count
 	end
 
-	def set_recently_submitted_word(syllabification)
-		session[:recent] ||= []
-		word = syllabification.word
-		session[:recent] << [ word.id , syllabification.id , word.value , syllabification.value ]
+	def recent_syllabifications
+		current_user.syllabifications.order("created_at desc").take(10)
 	end
 
-	def get_recently_submitted_words
-		(session[:recent] || []).reverse
-	end
 
 end

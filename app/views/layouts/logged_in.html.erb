@@ -38,9 +38,9 @@
               <div class="panel-heading">
                 <div class="panel-title"> Recent Tags Made</div>
               </div>
-              <div class="panel-body text-center" style="max-height: 25vh; min-height: 25vh; ; overflow-y: scroll;">
+              <div class="panel-body text-center" style="max-height: 35vh; min-height: 35vh; ; overflow-y: scroll;">
                 <div id="recently_tagged">
-                  <%= render :partial => "shared/recent_tags"  , :locals => { :recent_tags => get_recently_submitted_words } %>
+                  <%= render :partial => "shared/recent_syllabifications"  , :locals => { :recent_syllabifications => recent_syllabifications } %>
                 </div>
               </div>
             </div>

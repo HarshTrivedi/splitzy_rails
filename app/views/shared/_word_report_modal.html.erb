@@ -1,0 +1,29 @@
+ <div class="modal fade" id="report-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+         <h4 class="modal-title" id="myModalLabel">Report / Mark Word</h4>
+       </div>
+       <div class="modal-body">
+            <%= form_tag( mark_word_path(word) , method: "post" , :class => "form-group" , :remote => true) do %>
+                <br>
+                <%= label_tag 'category' %>
+                <br>
+                <%= radio_button_tag 'category', 'word_wrong' , true %> Word shown is wrong / has mistake
+                <br>
+                <%= radio_button_tag 'category', 'suggestion_wrong' %> Suggestion shown is complete different
+                <br>
+                <%= radio_button_tag 'category', 'other' %> Others
+                <br><br>
+                <%= label_tag 'report_note' %>
+                <%= text_area_tag(:report_note , nil , :class => "form-control" , :placeholder => "Please add helper note in report") %>
+                <div class="text-center">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <%= submit_tag("Submit" , :class => "btn btn-primary" ) %>
+                </div>
+            <% end %>
+       </div>
+     </div>
+   </div>
+ </div>

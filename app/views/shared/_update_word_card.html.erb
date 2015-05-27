@@ -74,7 +74,6 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-    language_name = $("#language_name").text().trim();
 
         $( "#update" ).click(function() {
               $(this).prop('disabled', true);
@@ -88,10 +87,8 @@
 
               $.ajax({
                 type: "POST",
-                url: "/alter_syllabification/" + language_name ,
+                url: "/alter_syllabification/" + syllabification_id ,
                 data: { submit_type: "update" ,
-                        language_name: language_name,
-                        word_id: word_id ,
                         syllabified_text: syllabified_word
                 },
                 dataType: "script"
@@ -105,9 +102,8 @@
                             
               $.ajax({
                 type: "POST",
-                url: "/alter_syllabification/" + language_name ,
-                data: { submit_type: "destroy" ,
-                        syllabification_id: syllabification_id
+                url: "/alter_syllabification/" + syllabification_id ,
+                data: { submit_type: "destroy" 
                 },
                 dataType: "script"
               });

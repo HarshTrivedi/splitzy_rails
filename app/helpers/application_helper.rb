@@ -9,7 +9,7 @@ module ApplicationHelper
 	def set_recently_submitted_word(syllabification)
 		session[:recent] ||= []
 		word = syllabification.word
-		session[:recent] << [ word.id , word.value , syllabification.value ]
+		session[:recent] << [ word.id , syllabification.id , word.value , syllabification.value ]
 	end
 
 	def get_recently_submitted_words

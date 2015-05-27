@@ -4,8 +4,12 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users, controllers: {registrations: "users/registrations", sessions: "users/sessions", passwords: "users/passwords"}, skip: [:sessions, :registrations]
 
-  get   'syllabify/:language_name'  => 'landings#syllabify'         , as: :syllabify
-  post   'syllabify/:language_name'  => 'landings#syllabify'         , as: :syllabify_remote
+  get   '/syllabify/:language_name'  => 'landings#syllabify'         , as: :syllabify
+  post  '/syllabify/:language_name'  => 'landings#syllabify'         , as: :syllabify_remote
+
+
+  get   '/syllabifications/:syllabification_id'  => 'landings#show_syllabification'         , as: :show_syllabification
+  post   '/alter_syllabification/:language_name'  => 'landings#alter_syllabification'         , as: :alter_syllabification_remote
 
   post   '/clear_skipped_words'  => 'landings#clear_skipped_words'         , as: :clear_skipped_words
 

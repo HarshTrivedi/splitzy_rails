@@ -76,6 +76,35 @@ class LandingsController < ApplicationController
       end
   end
 
+  def show_syllabification
+
+      @syllabification = Syllabification.find_by_id( params[:syllabification_id]  )
+      if @syllabification.user != current_user
+
+      end
+  end
+
+  def alter_syllabification
+
+    language_name = params[:language_name]
+    @language = Language.find_by_value( language_name )
+    syllabification = Syllabification.find_by_id( params[:syllabification_id] )
+    if current_user == syllabification.user
+          submit_type = params[:submit_type]
+          if submit_type == "update"
+            syllabified_text = params[:syllabified_text]
+            syllabification.syllabified_text = syllabified_text
+            syllabification.save
+          elsif submit_type == "destroy"
+            syllabification.destroy
+          end
+    else
+    end      
+    render :js => "alert('Done Altering!')"
+  end
+
+
+
   protected
 
   def layout_by_resource

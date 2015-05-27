@@ -66,11 +66,13 @@ class LandingsController < ApplicationController
       word_id = params[:word_id]
       word = Word.find_by_id(word_id)
       if word
+          word.report_category = params[:category]
+          word.report_note = params[:report_note]
           word.marked = true
           word.save
-          render :js => "alert('Successfully Marked!')"
+          render :js => "$('#report-modal').modal('hide') ; alert('Successfully Marked!')"
       else
-          render :js => "alert('Sorry, word not found!')"          
+          render :js => "$('#report-modal').modal('hide') ; alert('Sorry, word not found!')"          
       end
   end
 

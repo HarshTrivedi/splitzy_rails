@@ -79,9 +79,12 @@ class LandingsController < ApplicationController
   def show_syllabification
 
       @syllabification = Syllabification.find_by_id( params[:syllabification_id]  )
-      if @syllabification.user != current_user
-
+      if @syllabification.nil?
+          flash[:error] = "Sorry, No such syllabification exists."
+          redirect_to "/"
       end
+
+
   end
 
   def alter_syllabification
@@ -89,18 +92,29 @@ class LandingsController < ApplicationController
     language_name = params[:language_name]
     @language = Language.find_by_value( language_name )
     syllabification = Syllabification.find_by_id( params[:syllabification_id] )
-    if current_user == syllabification.user
-          submit_type = params[:submit_type]
-          if submit_type == "update"
-            syllabified_text = params[:syllabified_text]
-            syllabification.syllabified_text = syllabified_text
-            syllabification.save
-          elsif submit_type == "destroy"
-            syllabification.destroy
-          end
+
+    if syllabification.nil?
+
+        if current_user == syllabification.user
+              submit_type = params[:submit_type]
+              if submit_type == "update"
+                syllabified_text = params[:syllabified_text]
+                syllabification.value = syllabified_text
+                flash[:notice] = "Successfully updated syllabification."
+                syllabification.save
+              elsif submit_type == "destroy"
+                syllabification.destroy
+                flash[:notice] = "Successfully destroyed syllabification."
+              end
+              render :js => "window.location = '/'"
+        else
+            render :js => "alert('Sorry, request was not successfull.')"
+        end
     else
-    end      
-    render :js => "alert('Done Altering!')"
+        flash[:notice] = "This syllabification doesn't exist any more."
+        render :js => "window.location = '/'"
+    end
+
   end
 
 

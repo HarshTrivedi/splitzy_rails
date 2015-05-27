@@ -2,9 +2,7 @@
       
       <div class="col-xs-4 col-sm-4 lr_padding_zero">
           <button type="button" class="btn btn-default" aria-label="Left Align" id="session-pin" , style="float: left; margin: 2px;" >
-              <span class="glyphicon glyphicon-pushpin" aria-hidden="true">
-                <%= number_of_skipped_words %> 
-              </span>    
+              <span class="glyphicon glyphicon-pushpin" aria-hidden="true"><%= number_of_skipped_words %></span>    
           </button>
 
           <%= link_to( 
@@ -27,9 +25,7 @@
 
       <div class="col-xs-4 col-sm-4 lr_padding_zero">
           <button type="button" class="btn btn-default" aria-label="Left Align" id="session-pin" , style="float: right; margin: 2px;">
-             <span class="glyphicon glyphicon-saved" aria-hidden="true"> 
-                <%= word.syllabifications_count%> 
-             </span> 
+             <span class="glyphicon glyphicon-saved" aria-hidden="true"><%= word.syllabifications_count%></span> 
           </button>
 
           <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#report-modal" , style="float: right; margin: 2px;" >

@@ -1,4 +1,4 @@
-  <%if not @word.nil? %>
+  <%if not word.nil? %>
       
       <div class="col-xs-4 col-sm-4">
           <button type="button" class="btn btn-default" aria-label="Left Align" id="session-pin" , style="float: left; margin: 2px;" >
@@ -33,7 +33,7 @@
           </button>
       <%= link_to( 
           content_tag(:span , "" , :class => "glyphicon glyphicon-exclamation-sign" ) ,
-          mark_word_path(@word.id) , 
+          mark_word_path( word.id) , 
           :class => "btn btn-danger" , 
           :style => "float: right; margin: 2px;" , 
           :method => :post , 
@@ -41,6 +41,13 @@
       </div>
 
   <%end%>
+
+
+  <span style="visibility:hidden" id="word_id">
+    <%= word.id%>
+  </span>
+
+
 
   <div class="container text-center">
 

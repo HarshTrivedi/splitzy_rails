@@ -1,7 +1,7 @@
 ActiveAdmin.register Word do
 	menu false
 	belongs_to :language , :optional => true
-	permit_params :value , :suggestion 
+	permit_params :value , :suggestion , :iteration
 	active_admin_import
 
 	scope :not_syllabified 

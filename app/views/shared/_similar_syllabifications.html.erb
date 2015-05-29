@@ -1,0 +1,7 @@
+<%if word_syllabification_hash.size > 0 %>
+	<% word_syllabification_hash.each do |key , value| %> 
+		<p><%= key %> → <%= value %>
+	<%end%>
+<% else %>
+	<p> Sorry Nothing found!
+<% end %>

@@ -18,4 +18,25 @@ class Language < ActiveRecord::Base
   end
 
 
+
+  def get_top_similars( test_word , n)
+    words = self.words.where.not( :syllabifications_count => 0 ).select(:value).limit(10).map(&:value).to_a    
+    word_scores = words.map{|word| [ word , compare_upto_ngrams( word , test_word , 4)]  }.sort_by{|x| - x.last}.take(n)
+    selected_words = word_scores.map(&:first)
+    word_ids = Word.where(:value => selected_words ).select(:id).map(&:id).to_a
+    Syllabification.where(:word_id => word_ids )#.uniq.select(:value)
+  end
+
+
+
+  private
+  
+  def ngram(word , n); word.chars.each_cons(n).to_a.map(&:join); end
+  
+  def compare_upto_ngrams(word1 , word2 , n)
+    answer = 0
+    (2..n).each{|i| answer += ( i * (( ngram(word1 , i) & ngram(word2 , i) ).size)) }
+    answer
+  end
+
 end

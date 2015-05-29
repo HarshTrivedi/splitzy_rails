@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   get   '/syllabifications/:syllabification_id'  => 'landings#show_syllabification'         , as: :show_syllabification
   post   '/alter_syllabification/:syllabification_id'  => 'landings#alter_syllabification'         , as: :alter_syllabification_remote
+  post '/get_similar_syllabifications/:word_id'  => 'landings#get_similar_syllabifications' , as: :get_similar_syllabifications
 
   post   '/clear_skipped_words'  => 'landings#clear_skipped_words'         , as: :clear_skipped_words
 

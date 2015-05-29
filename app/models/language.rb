@@ -23,6 +23,7 @@ class Language < ActiveRecord::Base
     words = self.words.where.not( :syllabifications_count => 0 ).select(:value).map(&:value).to_a    
     word_scores = words.map{|word| [ word , compare_upto_ngrams( word , test_word , 4)]  }.sort_by{|x| - x.last}.take(n)
     selected_words = word_scores.map(&:first)
+    selected_words.delete(test_word)
     word_ids = Word.where(:value => selected_words ).select(:id).map(&:id).to_a
     Syllabification.where(:word_id => word_ids )#.uniq.select(:value)
   end

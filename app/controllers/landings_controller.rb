@@ -122,7 +122,7 @@ class LandingsController < ApplicationController
   def get_similar_syllabifications
     word_id = params[:word_id]
     test_word = Word.find_by_id(word_id)
-    similar_syllabifications = test_word.language.get_top_similars( test_word.value , 3)
+    similar_syllabifications = test_word.language.get_top_similars( test_word.value , 5)
     @word_syllabification_hash = {}
     similar_syllabifications.each do |syllabification|
       @word_syllabification_hash[syllabification.word.value] = syllabification.value

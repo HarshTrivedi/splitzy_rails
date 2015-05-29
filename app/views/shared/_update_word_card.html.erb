@@ -49,12 +49,12 @@
                 </div>          	  		
             </div>
        		<div class="row">
-         			<div>
                   <%if word.suggestion %>
-                      <p><b>Suggestion for ( <%= word.value%> ):</b></p>
-                      <p><%= word.suggestion %></p>
+                      <p style="margin: 0px"><b>Suggestion for ( <%= word.value%> ):</b></p>
+                      <p style="margin: 0px"><%= word.suggestion %></p>
                   <%end%>
-        		  </div>
+                  <b><p style="margin: 0px ; font-size: 100% ;"><%= link_to("Need Similars ?" , get_similar_syllabifications_path(word.id) , :method => :post , :remote => true ) %></b>
+                  <p id="similar-syllabifications"></p>
        		</div>
        		<div class="row">
 

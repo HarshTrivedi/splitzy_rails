@@ -20,7 +20,7 @@ class Language < ActiveRecord::Base
 
 
   def get_top_similars( test_word , n)
-    words = self.words.where.not( :syllabifications_count => 0 ).select(:value).limit(10).map(&:value).to_a    
+    words = self.words.where.not( :syllabifications_count => 0 ).select(:value).map(&:value).to_a    
     word_scores = words.map{|word| [ word , compare_upto_ngrams( word , test_word , 4)]  }.sort_by{|x| - x.last}.take(n)
     selected_words = word_scores.map(&:first)
     word_ids = Word.where(:value => selected_words ).select(:id).map(&:id).to_a

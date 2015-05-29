@@ -54,7 +54,7 @@
                       <p style="margin: 0px"><%= word.suggestion %></p>
                   <%end%>
                   <b><p style="margin: 0px ; font-size: 100% ;"><%= link_to("Need Similars ?" , get_similar_syllabifications_path(word.id) , :method => :post , :remote => true ) %></b>
-                  <p id="similar-syllabifications"></p>
+                  <p id="similar-syllabifications" style="margin: 0px; font-size: 15px;"></p>
        		</div>
        		<div class="row">
 

@@ -1,7 +1,7 @@
 <%if word_syllabification_hash.size > 0 %>
 	<% word_syllabification_hash.each do |key , value| %> 
-		<p style="margin: 0px ;"><%= key %> → <%= value %>
+		<%= key %> → <%= value %><br>
 	<%end%>
 <% else %>
-	<p style="margin: 0px ;"> Sorry Nothing found!
+		Sorry Nothing found!
 <% end %>

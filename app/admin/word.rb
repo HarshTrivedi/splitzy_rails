@@ -58,6 +58,9 @@ ActiveAdmin.register Word do
 	        		link_to "#{syllabification.value} (#{syllabification.id})" , admin_syllabification_path(syllabification)
 	        	}.join("<br>")	          	
 	        end
+	        column :report do |word|
+	        	word.report_category
+	        end
 	        actions
 	  end
 
@@ -67,6 +70,7 @@ ActiveAdmin.register Word do
 	        attributes_table_for word do
 	            row("Original Word")  { word.value  }
 	            row("Syllabifications submitted")  { word.syllabifications.count  }
+	            row("Report Category")  { word.report_category  }
 	        end
 	      end
 

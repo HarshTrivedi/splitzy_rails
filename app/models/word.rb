@@ -21,7 +21,7 @@ class Word < ActiveRecord::Base
         end
       end
     end
-    Word.where( :word_id => potentially_wrong_word_ids )
+    Word.where( :id => potentially_wrong_word_ids )
   }
 
   scope :unresolved_multi_syllabified , ->{  
@@ -33,7 +33,7 @@ class Word < ActiveRecord::Base
         end
       end
     end
-    Word.where( :word_id => unresolved_word_ids )
+    Word.where( :id => unresolved_word_ids )
   }
 
 

@@ -10,6 +10,10 @@ class Word < ActiveRecord::Base
   scope :three_plus_syllabified , ->{  Word.where( "syllabifications_count > ?" , 3) }
   scope :syllabified ,         ->{  Word.where.not(:syllabifications_count =>  0) }  
   scope :marked ,         ->{  Word.where(:marked =>  true) }
+  scope :potentially_wrong , ->{ Word.where.not(:syllabifications_count => 0).select{ |word|  ( [word.syllabifications.first.value.strip ] + (word.suggestion || "").split("&").map(&:strip)  ).uniq.size != 1  } }
+
+  scope :unresolved_multi_syllabified , ->{ Word.where.not(:syllabifications_count => 0).select{|word| word.syllabifications.map(&:value).map(&:strip).uniq.size != 1 } }
+
 
   validates :language, :presence => true
 

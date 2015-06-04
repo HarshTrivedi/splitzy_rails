@@ -117,6 +117,12 @@ ActiveAdmin.register Word do
 
 
 	csv do
+	 	column :word_id do |word|
+	 		word.id
+	 	end
+	 	column :syllabification_id do |word|
+	 		word.syllabifications.first.id
+	 	end
 	 	column :language do |word|
 	 		word.language.value
 	 	end
@@ -125,6 +131,9 @@ ActiveAdmin.register Word do
 	    end
 	    column :syllabification do |word|
 	   		word.syllabifications.first.value rescue ""
+	    end
+	    column :suggestion do |word|
+	   		word.suggestion
 	    end
 	end
 

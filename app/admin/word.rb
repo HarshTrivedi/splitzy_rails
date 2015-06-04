@@ -4,15 +4,15 @@ ActiveAdmin.register Word do
 	permit_params :value , :suggestion , :iteration
 	active_admin_import
 
-	scope :not_syllabified 
+	scope :not_syllabified , :show_count => false
 	# scope :one_syllabified 
 	# scope :two_syllabified 
 	# scope :three_syllabified 
 	# scope :three_plus_syllabified 
-	scope :syllabified   
-	scope :marked 
-	scope :potentially_wrong
-	scope :unresolved_multi_syllabified
+	scope :syllabified , :show_count => false
+	scope :marked , :show_count => false
+	scope :potentially_wrong , :show_count => false
+	scope :unresolved_multi_syllabified , :show_count => false
 
 	  controller do
 
@@ -48,7 +48,7 @@ ActiveAdmin.register Word do
 
 	  end 
 
-	  index do
+	  index pagination_total: false do
 	        column :id
 	        column :iteration
 	        column :value

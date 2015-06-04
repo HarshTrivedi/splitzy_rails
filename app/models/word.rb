@@ -14,7 +14,7 @@ class Word < ActiveRecord::Base
 
   scope :potentially_wrong , ->{ 
     potentially_wrong_word_ids = []
-    Word.where.not(:syllabifications_count => 0).where.not(:syllabifications_count => 1).find_in_batches do |word_group|
+    Word.where.not(:syllabifications_count => 0).where('suggestion like ?' , "%&%").find_in_batches do |word_group|
       word_group.each do |word|
         if ( ( [word.syllabifications.first.value.strip ] + (word.suggestion || "").split("&").map(&:strip)  ).uniq.size != 1 )
           potentially_wrong_word_ids << word.id

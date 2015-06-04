@@ -114,4 +114,21 @@ ActiveAdmin.register Word do
 	  filter :marked, :label => "Marked?"
 	  filter :report_category, :label => "Report Category"
 	  filter :iteration, :label => "Iteration"
+
+
+	csv do
+	 	column :language do |word|
+	 		word.language.value
+	 	end
+	    column :word do |word|
+	   		word.value
+	    end
+	    column :syllabification do |word|
+	   		word.syllabifications.first.value rescue ""
+	    end
+	end
+
+
+
+
 end

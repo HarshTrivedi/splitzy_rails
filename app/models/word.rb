@@ -10,18 +10,30 @@ class Word < ActiveRecord::Base
   scope :three_plus_syllabified , ->{  Word.where( "syllabifications_count > ?" , 3) }
   scope :syllabified ,         ->{  Word.where.not(:syllabifications_count =>  0) }  
   scope :marked ,         ->{  Word.where(:marked =>  true) }
+
+
   scope :potentially_wrong , ->{ 
-    syllabified_words = Word.where.not(:syllabifications_count => 0)
-    potentially_wrong_words = syllabified_words.select{ |word|  ( [word.syllabifications.first.value.strip ] + (word.suggestion || "").split("&").map(&:strip)  ).uniq.size != 1  } 
-    potentially_wrong_word_ids = potentially_wrong_words.map(&:id)
+    potentially_wrong_word_ids = []
+    Word.where.not(:syllabifications_count => 0).find_in_batches do |word_group|
+      word_group.each do |word|
+        if ( ( [word.syllabifications.first.value.strip ] + (word.suggestion || "").split("&").map(&:strip)  ).uniq.size != 1 )
+          potentially_wrong_word_ids << word.id
+        end
+      end
+    end
     Word.where( :word_id => potentially_wrong_word_ids )
   }
 
   scope :unresolved_multi_syllabified , ->{  
-      syllabified_words = Word.where.not(:syllabifications_count => 0)
-      unresolved_words = syllabified_words.select{|word| word.syllabifications.map(&:value).map(&:strip).uniq.size != 1 }
-      unresolved_word_ids = unresolved_words.map(&:id)
-      Word.where( :word_id => unresolved_word_ids )
+    unresolved_word_ids = []
+    Word.where.not(:syllabifications_count => 0).find_in_batches do |word_group|
+      word_group.each do |word|
+        if ( word.syllabifications.map(&:value).map(&:strip).uniq.size != 1  )
+          unresolved_word_ids << word.id
+        end
+      end
+    end
+    Word.where( :word_id => unresolved_word_ids )
   }
 
 

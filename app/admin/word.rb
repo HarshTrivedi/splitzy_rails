@@ -54,7 +54,9 @@ ActiveAdmin.register Word do
 	        column :value
 	        column :suggestion
 	        column :syllabifications do |word|
-	        	raw word.syllabifications.map(&:value).join("<br>")	          	
+	        	raw word.syllabifications.map{|syllabification|  
+	        		link_to "#{syllabification.value} (#{syllabification.id})" , admin_syllabification_path(syllabification)
+	        	}.join("<br>")	          	
 	        end
 	        actions
 	  end
@@ -70,6 +72,9 @@ ActiveAdmin.register Word do
 
 	      panel "Syllabifications " do
 	          table_for word.syllabifications do
+	          	  column "id" do |syllabification|
+	          	  		syllabification.id
+	          	  end
 	              column "user" do |syllabification|
 			  			link_to( syllabification.user.email , admin_user_path(syllabification.user) )
 	              end

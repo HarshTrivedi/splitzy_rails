@@ -6,7 +6,11 @@ class Language < ActiveRecord::Base
     skipped_list = skipped_list || ""
     skipped_list = skipped_list.split(",").map(&:to_i)    
 
-    non_syllabified_word_ids = self.words.where(:syllabifications_count => 0).select(:id).map(&:id)
+    # non_syllabified_word_ids = self.words.where(:syllabifications_count => 0).select(:id).map(&:id)
+    ## mocking up here
+    non_syllabified_word_ids = self.words.where(:marked => true , :report_category => "confusing" ).select(:id).map(&:id)
+    ##
+
     word_ids_left = non_syllabified_word_ids - skipped_list   
     skipped_list.each{|x| non_syllabified_word_ids.delete(x) }
     words_left = Word.where( :id => word_ids_left ).order(:value).limit(50)

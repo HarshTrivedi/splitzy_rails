@@ -13,6 +13,7 @@ ActiveAdmin.register Word do
 	scope :marked , :show_count => false
 	scope :potentially_wrong , :show_count => false
 	scope :unresolved_multi_syllabified , :show_count => false
+	scope :very_likely_wrong , :show_count => false
 
 	  controller do
 

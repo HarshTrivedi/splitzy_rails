@@ -24,6 +24,21 @@ class Word < ActiveRecord::Base
     Word.where( :id => potentially_wrong_word_ids )
   }
 
+
+  scope :very_likely_wrong , ->{ 
+    very_likely_wrong_word_ids = []
+    Word.where.not(:syllabifications_count => 0).where('suggestion like ?' , "%&%").find_in_batches do |word_group|
+      word_group.each do |word|
+        if ( ( (word.suggestion || "").split("&").map(&:strip)  ).uniq.size == 1 )
+          if ( ( [word.syllabifications.first.value.strip ] + (word.suggestion || "").split("&").map(&:strip)  ).uniq.size != 1 )
+            very_likely_wrong_word_ids << word.id
+          end
+        end
+      end
+    end
+    Word.where( :id => very_likely_wrong_word_ids )
+  }
+
   scope :unresolved_multi_syllabified , ->{  
     unresolved_word_ids = []
     Word.where.not(:syllabifications_count => 0).where.not(:syllabifications_count => 1).find_in_batches do |word_group|

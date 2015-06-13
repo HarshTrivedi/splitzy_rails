@@ -95,7 +95,7 @@ class LandingsController < ApplicationController
 
     if not syllabification.nil?
 
-        if current_user == syllabification.user
+        # if current_user == syllabification.user
               submit_type = params[:submit_type]
               if submit_type == "update"
                 syllabified_text = params[:syllabified_text]
@@ -107,9 +107,9 @@ class LandingsController < ApplicationController
                 flash[:notice] = "Successfully destroyed syllabification : #{syllabification.value}"
               end
               render :js => "window.location = '/'"
-        else
-            render :js => "alert('Sorry, request was not successfull.')"
-        end
+        # else
+        #     render :js => "alert('Sorry, request was not successfull.')"
+        # end
     else
         flash[:notice] = "This syllabification doesn't exist any more."
         render :js => "window.location = '/'"
